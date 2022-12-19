@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+    <name>Siusk24 International Base Mod for OC3</name>
+    <version>0.0.2</version>
+    <author>Mijora</author>
+    <link>https://www.mijora.lt</link>
+    <code>s24_int_m_base</code>
+
+    <!-- ADMIN -->
+
+    <file path="admin/controller/common/column_left.php">
+        <operation>
+            <search><![CDATA[$marketplace = array();]]></search>
+            <add position="after"><![CDATA[
+                /* S24_INT_M ADMIN MENU */
+                $this->load->language('extension/shipping/s24_int_m');
+                $s24_int_m = [];
+                if ($this->user->hasPermission('access', 'extension/shipping/s24_int_m')) {
+                    $s24_int_m[] = array(
+                        'name'     => $this->language->get('s24_int_m_menu_settings'),
+                        'href'     => $this->url->link('extension/shipping/s24_int_m', 'user_token=' . $this->session->data['user_token'], true),
+                        'children' => []
+                    );
+                }
+
+                if ($this->user->hasPermission('access', 'extension/shipping/s24_int_m')) {
+                    $s24_int_m[] = array(
+                        'name'     => $this->language->get('s24_int_m_menu_manifest'),
+                        'href'     => $this->url->link('extension/shipping/s24_int_m/manifest', 'user_token=' . $this->session->data['user_token'], true),
+                        'children' => []
+                    );
+                }
+
+                if (!empty($s24_int_m) && $this->user->hasPermission('access', 'extension/shipping/s24_int_m')) {
+                    $marketplace[] = array(
+                        'name'     => $this->language->get('s24_int_m_menu_head'),
+                        'href'     => '',
+                        'children' => $s24_int_m
+                    );
+                }
+                /* S24_INT_M END */
+            ]]></add>
+        </operation>
+    </file>
+
+    <file path="admin/controller/sale/order.php" error="log">
+        <operation error="skip">
+            <search><![CDATA[$this->response->setOutput($this->load->view('sale/order_info', $data));]]></search>
+            <add position="before"><![CDATA[
+                /* S24_INT_M */
+                $data['s24_int_m_order'] = strpos($order_info['shipping_code'], 's24_int_m.') === 0; // show only for orders with s24_int_m shipping method
+                $data['s24_int_m_ajax'] = 'index.php?route=extension/shipping/s24_int_m/ajax&user_token=' . $this->session->data['user_token'];
+                /* S24_INT_M END */
+            ]]></add>
+        </operation>
+    </file>
+
+    <file path="admin/view/template/sale/order_info.twig" error="log">
+        <operation>
+        <search><![CDATA[{{ footer }}]]></search>
+            <add position="before"><![CDATA[
+                <!-- S24_INT_M -->
+                {% if s24_int_m_order %}
+                    <link rel="stylesheet" href="view/javascript/s24_int_m/select2.min.css">
+                    <link rel="stylesheet" href="view/javascript/s24_int_m/select2_bs3.css">
+                    <link rel="stylesheet" href="view/javascript/s24_int_m/admin.css">
+                    <script>
+                        var S24_INT_M_ORDER_DATA = {
+                            ajax: '{{ s24_int_m_ajax }}',
+                            order_id: '{{ order_id }}'
+                        };
+                    </script>
+                    <script src="view/javascript/s24_int_m/select2.min.js?20220426" type="text/javascript"></script>
+                    <script src="view/javascript/s24_int_m/common.js?20220426" type="text/javascript"></script>
+                    <script src="view/javascript/s24_int_m/order.js?20220426" type="text/javascript"></script>
+                {% endif %}
+                <!-- S24_INT_M END -->
+            ]]></add>
+        </operation>
+    </file>
+
+    <file path="admin/view/template/sale/order_list.twig" error="log">
+        <operation>
+        <search><![CDATA[{{ footer }}]]></search>
+        <add position="before"><![CDATA[
+            <!-- Siusk24.lt Int (check if need to add logo) -->
+            <script type="text/javascript"><!--
+            $(document).ready(function(){
+            $('input[name^=\'shipping_code\'][value^=\'s24_int_m.\']')
+                .closest('td').next().next()
+                .append($('<img src="view/image/s24_int_m/s24_logo.svg" alt="Siusk24.lt Logo" class="s24-order-logo">'))
+            });
+            //--></script>
+            <style>
+            .s24-order-logo {
+                height: 20px;
+                margin-left: 0.5rem;
+            }
+            </style>
+            <!-- Siusk24.lt Int END -->
+            ]]>
+        </add>
+        </operation>
+    </file>
+
+    <!-- API -->
+
+    <file path="catalog/controller/api/order.php" error="log">
+        <operation>
+        <search><![CDATA[$this->model_checkout_order->editOrder($order_id, $order_data);]]></search>
+            <add position="before"><![CDATA[
+                /* S24_INT_M */
+                if (isset($this->session->data['shipping_method']) && strpos($this->session->data['shipping_method']['code'], 's24_int_m.') === 0) {
+                    $this->load->model('extension/shipping/s24_int_m');
+                    $this->model_extension_shipping_s24_int_m->updateOrderInformation($order_id);
+				}
+                /* S24_INT_M END */
+            ]]></add>
+        </operation>
+    </file>
+
+    <!-- Front -->
+    <file path="catalog/controller/checkout/success.php" error="log">
+        <operation>
+        <search><![CDATA[$this->cart->clear();]]></search>
+            <add position="after"><![CDATA[
+                /* S24_INT_M */
+                if (isset($this->session->data['shipping_method']) && strpos($this->session->data['shipping_method']['code'], 's24_int_m.') === 0) {
+                    $this->load->model('extension/shipping/s24_int_m');
+                    $this->model_extension_shipping_s24_int_m->saveOrderInformation();
+				}
+                /* S24_INT_M END */
+            ]]></add>
+        </operation>
+    </file>
+
+    <file path="catalog/controller/checkout/checkout.php" error="log">
+        <operation error="skip">
+            <search><![CDATA[$this->document->addStyle('catalog/view/javascript/jquery/datetimepicker/bootstrap-datetimepicker.min.css');]]></search>
+            <add position="after"><![CDATA[
+                // S24_INT_M
+                $s24_int_m_status = $this->config->get('shipping_s24_int_m_status');
+
+                $data['s24_int_m_checkout_partial'] = '';
+                if ($s24_int_m_status) {
+                    $this->document->addStyle('catalog/view/javascript/s24_int_m/front.css?20220429');
+
+                    $this->document->addScript('catalog/view/javascript/s24_int_m/common.js?20220429');
+                    $this->document->addScript('catalog/view/javascript/s24_int_m/front.js?20220429');
+
+                    $s24_int_m_data = [
+                        's24_int_m_ajax' => $this->url->link('extension/module/s24_int_m/ajax')
+                    ];
+
+                    $this->load->model('extension/shipping/s24_int_m');
+                    $s24_int_m_data = array_merge($s24_int_m_data, $this->model_extension_shipping_s24_int_m->getFrontData());
+
+                    $data['s24_int_m_checkout_partial'] = $this->load->view('extension/module/s24_int_m/checkout_partial', $s24_int_m_data);
+                }
+                // S24_INT_M END    
+            ]]></add>
+        </operation>
+    </file>
+
+    <file path="catalog/view/theme/default/template/checkout/checkout.twig" error="log">
+        <operation>
+            <search><![CDATA[{{ footer }}]]></search>
+            <add position="before"><![CDATA[
+                <!-- S24_INT_M -->
+                {{ s24_int_m_checkout_partial }}
+                <!-- S24_INT_M END -->
+            ]]></add>
+        </operation>
+        
+        <operation>
+            <search><![CDATA[$(document).delegate('#button-shipping-method', 'click', function() {]]></search>
+            <add position="after"><![CDATA[
+                /* S24_INT_M */
+                if (typeof S24_INT_M_FRONT === 'object' && !S24_INT_M_FRONT.isValidTerminalSelection()) {
+                    return;
+                }
+                /* S24_INT_M END */
+            ]]></add>
+        </operation>
+    </file>
+</modification>

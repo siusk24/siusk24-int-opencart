@@ -1,0 +1,96 @@
+<div class="tab-pane" id="tab-sender-info">
+    <div class="container-fluid">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3.16683 15.0417H4.75016V8.70833H14.2502V15.0417H15.8335V6.61042L9.50016 4.07708L3.16683 6.61042V15.0417ZM1.5835 16.625V5.54167L9.50016 2.375L17.4168 5.54167V16.625H12.6668V10.2917H6.3335V16.625H1.5835ZM7.12516 16.625V15.0417H8.7085V16.625H7.12516ZM8.7085 14.25V12.6667H10.2918V14.25H8.7085ZM10.2918 16.625V15.0417H11.8752V16.625H10.2918ZM4.75016 8.70833H14.2502H4.75016Z" fill="#4C4D5A"/>
+                    </svg>
+                    {{ s24_int_m_title_sender_settings }}</h3>
+            </div>
+
+            <div class="panel-body">
+                <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-s24_int_m-sender" class="form-horizontal">
+                    <input type="hidden" name="sender_settings_update">
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-sender-name">{{ s24_int_m_label_sender_name }}</label>
+                        <div class="col-sm-5">
+                            <input type="text" name="s24_int_m_sender_name" value="{{ s24_int_m_sender_name }}" id="input-sender-name" class="form-control" 
+                                placeholder="{{ s24_int_m_generic_placeholder_type_in }}"
+                            />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-sender-street">{{ s24_int_m_label_sender_street }}</label>
+                        <div class="col-sm-5">
+                            <input type="text" name="s24_int_m_sender_street" value="{{ s24_int_m_sender_street }}" id="input-sender-street" class="form-control" 
+                                placeholder="{{ s24_int_m_generic_placeholder_type_in }}"
+                            />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-sender-postcode">{{ s24_int_m_label_sender_postcode }}</label>
+                        <div class="col-sm-5">
+                            <input type="text" name="s24_int_m_sender_postcode" value="{{ s24_int_m_sender_postcode }}" id="input-sender-postcode" class="form-control" 
+                                placeholder="{{ s24_int_m_generic_placeholder_type_in }}"
+                            />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-sender-city">{{ s24_int_m_label_sender_city }}</label>
+                        <div class="col-sm-5">
+                            <input type="text" name="s24_int_m_sender_city" value="{{ s24_int_m_sender_city }}" id="input-sender-city" class="form-control" 
+                                placeholder="{{ s24_int_m_generic_placeholder_type_in }}"
+                            />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">{{ s24_int_m_label_sender_country }}</label>
+                        <div class="col-sm-5">
+                            <select name="s24_int_m_sender_country" class="js-select-sender" style="width: 100%">
+                                <option value=""></option>
+                                {% for country in countries %}
+                                <option value="{{ country.get('code') }}" {% if country.get('code') == s24_int_m_sender_country %} selected {% endif %}>{{ country.get('en_name') }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-sender-phone">{{ s24_int_m_label_sender_phone }}</label>
+                        <div class="col-sm-5">
+                            <input type="text" name="s24_int_m_sender_phone" value="{{ s24_int_m_sender_phone }}" id="input-sender-phone" class="form-control" 
+                                placeholder="{{ s24_int_m_generic_placeholder_type_in }}"
+                            />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-sender-email">{{ s24_int_m_label_sender_email }}</label>
+                        <div class="col-sm-5">
+                            <input type="text" name="s24_int_m_sender_email" value="{{ s24_int_m_sender_email }}" id="input-sender-email" class="form-control" 
+                                placeholder="{{ s24_int_m_generic_placeholder_type_in }}"
+                            />
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="panel-footer clearfix">
+                <div class="pull-right">
+                    <button type="submit" form="form-s24_int_m-sender" class="btn btn-s24 btn-s24-primary">
+                        <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4.99788 20.1172C4.49372 20.1172 4.06197 19.9378 3.70263 19.5791C3.34391 19.2198 3.16455 18.788 3.16455 18.2839V5.45052C3.16455 4.94635 3.34391 4.5146 3.70263 4.15527C4.06197 3.79655 4.49372 3.61719 4.99788 3.61719H15.2416C15.4861 3.61719 15.7192 3.66302 15.9411 3.75469C16.1623 3.84635 16.3569 3.97622 16.525 4.14427L19.1375 6.75677C19.3055 6.92483 19.4354 7.11947 19.5271 7.34069C19.6187 7.56252 19.6646 7.79566 19.6646 8.0401V18.2839C19.6646 18.788 19.4852 19.2198 19.1265 19.5791C18.7671 19.9378 18.3354 20.1172 17.8312 20.1172H4.99788ZM17.8312 8.06302L15.2187 5.45052H4.99788V18.2839H17.8312V8.06302ZM11.4146 17.3672C12.1784 17.3672 12.8277 17.0998 13.3625 16.5651C13.8972 16.0304 14.1646 15.3811 14.1646 14.6172C14.1646 13.8533 13.8972 13.204 13.3625 12.6693C12.8277 12.1345 12.1784 11.8672 11.4146 11.8672C10.6507 11.8672 10.0014 12.1345 9.46663 12.6693C8.93191 13.204 8.66455 13.8533 8.66455 14.6172C8.66455 15.3811 8.93191 16.0304 9.46663 16.5651C10.0014 17.0998 10.6507 17.3672 11.4146 17.3672ZM6.83122 10.0339H13.2479C13.5076 10.0339 13.7255 9.94585 13.9015 9.76985C14.0769 9.59447 14.1646 9.37691 14.1646 9.11719V7.28385C14.1646 7.02413 14.0769 6.80627 13.9015 6.63027C13.7255 6.45488 13.5076 6.36719 13.2479 6.36719H6.83122C6.5715 6.36719 6.35363 6.45488 6.17763 6.63027C6.00225 6.80627 5.91455 7.02413 5.91455 7.28385V9.11719C5.91455 9.37691 6.00225 9.59447 6.17763 9.76985C6.35363 9.94585 6.5715 10.0339 6.83122 10.0339ZM4.99788 8.06302V18.2839V5.45052V8.06302Z" fill="white"/>
+                        </svg>
+                        {{ s24_int_m_generic_btn_save }}
+                    </button>
+                </div>
+            </div>
+        </div> <!-- Panel -->
+    </div> <!-- Container -->
+</div> <!-- Pane -->

@@ -1,0 +1,50 @@
+{{ header }}
+{{ column_left }}
+
+<div id="content" class="s24_int_m_content loading">
+    <div class="page-header">
+        <div class="container-fluid">
+            <div class="s24-module-header-wrapper">
+                <h1><img src="view/image/s24_int_m/s24_logo.svg" alt="Siusk24.lt Logo" style="height: 33px;"></h1>
+                <ul class="breadcrumb">
+                    {% for breadcrumb in breadcrumbs %}
+                    <li><a href="{{ breadcrumb['href'] }}">{{ breadcrumb['text'] }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div id="s24_int_m-panel" class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M13.1664 10.7381V2.64286C13.1664 2.21346 12.9959 1.80165 12.6922 1.49802C12.3886 1.19439 11.9768 1.02381 11.5474 1.02381H5.0712C4.6418 1.02381 4.22999 1.19439 3.92636 1.49802C3.62273 1.80165 3.45215 2.21346 3.45215 2.64286V10.7381C3.45215 11.1675 3.62273 11.5793 3.92636 11.8829C4.22999 12.1866 4.6418 12.3571 5.0712 12.3571H11.5474C11.9768 12.3571 12.3886 12.1866 12.6922 11.8829C12.9959 11.5793 13.1664 11.1675 13.1664 10.7381Z" stroke="#4C4D5A" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M3.29465 2.995L1.67237 3.58595C1.269 3.73287 0.940491 4.03398 0.759082 4.42306C0.577674 4.81214 0.558215 5.25734 0.704985 5.66076L3.47356 13.2679C3.5463 13.4677 3.6577 13.6512 3.80138 13.808C3.94507 13.9647 4.11823 14.0917 4.31098 14.1815C4.50372 14.2713 4.71228 14.3223 4.92473 14.3315C5.13718 14.3408 5.34937 14.308 5.54918 14.2352L10.0566 12.4559M5.88108 5.07143H9.9287M5.88108 6.69048H10.7382M5.88108 8.30952H8.30965" stroke="#4C4D5A" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    {{ s24_int_m_manifest_page_title }}
+                </h3>
+                <span>{{ s24_int_m_manifest_caption }}</span>
+            </div>
+            <div class="panel-body" id="manifest-list-table">
+                {{ manifests_partial }}
+            </div>
+        </div>
+    </div>
+
+    <div class="s24_int_m_loader">
+        <div class="bs5-spinner-border"></div>
+    </div>
+</div>
+
+<template id="s24-manifest-print-warning">{{ s24_int_m_manifest_warning_btn_print }}</template>
+<link rel="stylesheet" href="view/javascript/s24_int_m/admin.css">
+<script>
+var S24_INT_M_MANIFEST_DATA = {
+    ajax: '{{ ajax_url }}'
+};
+</script>
+<script src="view/javascript/s24_int_m/common.js"></script>
+<script src="view/javascript/s24_int_m/manifest.js"></script>
+{{ footer }} 

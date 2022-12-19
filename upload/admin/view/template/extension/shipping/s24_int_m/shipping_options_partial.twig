@@ -1,0 +1,53 @@
+{% for s24_int_option in s24_int_options %}
+    <tr data-shipping-method-id="{{ s24_int_option.id }}" data-services="{{ s24_int_option.allowed_services }}">
+        <td>{{ s24_int_option.id }}</td>
+        <td>{{ s24_int_option.title }}</td>
+        <td>{{ dynamic_strings[s24_int_option.getTypeTranslationString()] }}</td>
+        <td data-services-row>{{ s24_int_option.allowed_services }}</td>
+        <td>{{ dynamic_strings[s24_int_option.getOfferPriorityTranslationString()] }}</td>
+        <td>{{ s24_int_option.sort_order }}</td>
+        <td>
+            <div class="checkbox checbox-switch switch-primary">
+                <label>
+                    <input type="checkbox" name="s24_int_m_option_enabled" disabled {% if s24_int_option.enabled %}checked{% endif %}/>
+                    <span></span>
+                    <div data-status="on">{{ s24_int_m_generic_enabled }}</div>
+                    <div data-status="off">{{ s24_int_m_generic_disabled }}</div>
+                </label>
+            </div>
+        </td>
+        <td class="actions-col">
+            <div class="s24-sm-actions-wrapper">
+                <button class="btn btn-s24 btn-s24-info s24-table-action-btn" 
+                    data-btn-add-option data-shipping-method-id="{{ s24_int_option.id }}"
+                    data-toggle="tooltip" title="{{ s24_int_m_tooltip_edit }}"
+                >
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1.53206 12.4658H2.6045L9.21151 5.84932L8.13907 4.77534L1.53206 11.3918V12.4658ZM12.4863 4.73699L9.23066 1.51507L10.3031 0.441096C10.5968 0.147032 10.9576 0 11.3855 0C11.813 0 12.1735 0.147032 12.4671 0.441096L13.5396 1.51507C13.8332 1.80913 13.9864 2.16405 13.9992 2.57984C14.012 2.9951 13.8715 3.34977 13.5779 3.64384L12.4863 4.73699ZM0.76603 14C0.548988 14 0.367184 13.9264 0.220617 13.7791C0.073539 13.6323 0 13.4502 0 13.2329V11.0658C0 10.9635 0.0191508 10.8645 0.0574523 10.7689C0.0957538 10.6727 0.153206 10.5863 0.229809 10.5096L8.11992 2.60822L11.3755 5.86849L3.48544 13.7699C3.40883 13.8466 3.32278 13.9041 3.22729 13.9425C3.13128 13.9808 3.0322 14 2.93007 14H0.76603ZM8.67529 5.31233L8.13907 4.77534L9.21151 5.84932L8.67529 5.31233Z" fill="#979797"/>
+                    </svg>
+                </button>
+                <button class="btn btn-s24 btn-s24-danger s24-table-action-btn" 
+                    data-btn-delete-option data-shipping-method-id="{{ s24_int_option.id }}"
+                    data-toggle="tooltip" title="{{ s24_int_m_tooltip_delete }}"
+                >
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2.3335 4.08333H11.6668M2.91683 4.08333L3.50016 11.0833C3.50016 11.3928 3.62308 11.6895 3.84187 11.9083C4.06066 12.1271 4.35741 12.25 4.66683 12.25H9.3335C9.64292 12.25 9.93966 12.1271 10.1585 11.9083C10.3772 11.6895 10.5002 11.3928 10.5002 11.0833L11.0835 4.08333M5.25016 4.08333V2.33333C5.25016 2.17862 5.31162 2.03025 5.42102 1.92085C5.53041 1.81146 5.67879 1.75 5.8335 1.75H8.16683C8.32154 1.75 8.46991 1.81146 8.57931 1.92085C8.6887 2.03025 8.75016 2.17862 8.75016 2.33333V4.08333M5.8335 7L8.16683 9.33333M8.16683 7L5.8335 9.33333" stroke="white" stroke-width="1.16667" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+        </td>
+    </tr>
+{% endfor %}
+<tr data-no-shipping-methods>
+    <td colspan="8" class="text-center">
+        <div class="s24-no-shipping-methods">
+            {{ s24_int_m_sm_table_no_options }}
+            <button data-btn-add-option class="btn btn-s24 btn-s24-primary">
+                <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4.35857 10.17V5.81143H0V4.35857H4.35857V0H5.81143V4.35857H10.17V5.81143H5.81143V10.17H4.35857Z" fill="white"/>
+                </svg>
+                {{ s24_int_m_sm_table_btn_create }}
+            </button>
+        </div>
+    </td>
+</tr>

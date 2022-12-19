@@ -1,0 +1,8 @@
+{
+    "autoload": {
+        "psr-4": {
+            "Mijora\\S24IntOpencart\\": "src/",
+            "Mijora\\S24IntApiLib\\": "api-lib/src/"
+        }
+    }
+}

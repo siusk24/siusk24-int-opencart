@@ -1,0 +1,27 @@
+{% if total_pages > 0 %}
+<ul class="pagination">
+    {% if current_page > 1 %}
+    <li>
+        <a href="#" class="s24_int_m-paginator-btn-previous"  data-page="{{ current_page - 1 }}">&lt;&lt;</a>
+    </li>
+    {% else %}
+    <li class="disabled">
+        <span>&lt;&lt;</span>
+    </li>
+    {% endif %}
+    <li class="active">
+        <span class="s24_int_m_current_page">{{ current_page }}</span>
+        <span>/</span>
+        <span class="s24_int_m_total_pages">{{ total_pages }}</span>
+    </li>
+    {% if current_page < total_pages %}
+    <li>
+        <a href="#" class="s24_int_m-paginator-btn-next" data-page="{{ current_page + 1 }}">&gt;&gt;</a>
+    </li>
+    {% else %}
+    <li class="disabled">
+        <span>&gt;&gt;</span>
+    </li>
+    {% endif %}
+</ul>
+{% endif %}

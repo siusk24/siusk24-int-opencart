@@ -1,0 +1,870 @@
+body {
+    --loader-size: 5em;
+    --loader-weight: 0.5em;
+}
+
+.tooltip-inner {
+    background-color: rgba(0, 0, 0, 0.75);
+}
+
+.s24_int_m_content button > * {
+    pointer-events: none;
+}
+
+#s24_int_m_panel {
+    min-width: 250px;
+    max-width: 500px;
+    margin-bottom: 1.5em;
+}
+
+#s24_int_m_panel.loading {
+    min-height: 7em;
+}
+
+.s24-module-header-wrapper > * {
+    margin: 0 !important;
+}
+
+.s24-module-header-wrapper > .breadcrumb {
+    padding: 0;
+}
+
+.s24-module-header-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    flex-wrap: wrap;
+}
+
+.s24-version {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+
+.s24_int_m_content .panel-default .panel-heading {
+    display: flex;
+    align-items: center;
+}
+
+.s24_int_m_content .panel-heading h3 {
+    display: flex;
+    gap: 0.25em;
+    align-items: center;
+    flex: 1;
+}
+
+.s24_int_m_content select:invalid,
+.s24_int_m_content input:invalid {
+    border-color: #e3503e;
+    -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
+    box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
+}
+
+.s24-modal-x-btn {
+    border: none;
+    background-color: inherit;
+    padding: 6px;
+    margin: 0;
+    font-size: 0;
+}
+
+.btn-s24 {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25em;
+}
+
+.btn-s24-primary {
+    background-color: #F89722;
+    border: 1px solid #C17111;
+    color: #FFFFFF;
+}
+
+.btn-s24-primary:hover {
+    background-color: #E98814;
+    border-color: #C17111;
+    color: #FFFFFF;
+}
+
+.btn-s24-info {
+    background: #FFFFFF;;
+    border: 1px solid #BCBCBC;
+    color: #979797;
+}
+
+.btn-s24-info:hover {
+    background-color: #FFFFFF;
+    border-color: #939393;
+    color: #757575;
+}
+
+.btn-s24-danger {
+    background-color: #F22828;
+    border: 1px solid #F22828;
+    color: #FFFFFF;
+}
+
+.btn-s24-danger:hover {
+    background-color: #CF1C1C;
+    border-color: #CF1C1C;
+    color: #FFFFFF;
+}
+
+.btn-s24 > svg {
+    height: 22px;
+}
+
+[data-btn-save-parcel-default].btn-s24 > svg {
+    height: 18px;
+}
+
+.btn-s24.add-shipping-method-btn,
+.btn-s24.s24-table-action-btn {
+    width: 26px;
+    height: 26px;
+    padding: 0;
+}
+
+.btn-s24.add-shipping-method-btn > svg {
+    height: 11px;
+}
+
+.s24-sm-actions-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 4px;
+}
+
+.additional-services {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    gap: 1em;
+}
+
+.checkbox [data-status] {
+    display: none;
+    font-weight: bold;
+}
+
+.checkbox input[type="checkbox"]:checked ~ [data-status="on"],
+.checkbox input[type="checkbox"]:not(:checked) ~ [data-status="off"] {
+    display: inline-block;
+}
+
+.s24-no-shipping-methods {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    padding: 12px 0;
+}
+
+[data-services-row] > section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5em;
+    overflow: hidden;
+    transition: height 250ms ease-in-out;
+}
+
+[data-services-row] > section[data-expanded="0"] {
+    height: 40px;
+}
+[data-services-row] > section[data-expanded="1"] {
+    height: auto;
+}
+
+[data-services-row] > section[data-expanded="1"] > .s24-service-pill:nth-child(3) {
+    display: none;
+}
+
+.s24-service-pill {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 10px;
+    gap: 6px;
+
+    background: #F3F3F3;
+    border-radius: 3px;
+
+    white-space: nowrap;
+}
+
+button.close-section-btn {
+    grid-column: 1/4;
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    padding: 0;
+    margin-top: 1em;
+}
+
+button.close-section-btn::before,
+button.close-section-btn::after {
+    content: '';
+    height: 1px;
+    background-color: #DCDCDC;
+    flex: 1;
+}
+
+button.s24-service-pill {
+    width: fit-content;
+    height: 40px;
+    border: none;
+    background: linear-gradient(90deg, #F3F3F3 0%, #FFFFFF 100%);
+    opacity: 0.4;
+}
+
+button.s24-service-pill::after {
+    content: attr(data-count);
+}
+
+.s24-service-pill > img {
+    height: 20px;
+}
+
+.service-disabled::before {
+    content: '\2716';
+    color: #FF0000;
+    margin-right: 0.25em;
+}
+
+.service-enabled::before {
+    content: '\2713';
+    color: #008000;
+    margin-right: 0.25em;
+}
+
+td.actions-col:last-of-type,
+#sm-modal-countries td[data-cell-actions] {
+    padding-right: 0;
+}
+
+tr + tr[data-no-shipping-methods] {
+    display: none;
+}
+
+.s24-int-m-modal {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 9;
+}
+
+.s24-int-m-modal [data-modal-type] {
+    display: none !important;
+}
+
+.s24-int-m-modal.sm-create [data-modal-type="create"],
+.s24-int-m-modal.sm-edit [data-modal-type="edit"] {
+    display: flex !important;
+}
+
+.s24-int-m-modal > .panel {
+    width: 100%;
+    max-width: 95%;
+    margin-top: 70px;
+}
+
+.s24-int-m-modal > .panel > .panel-body {
+    max-height: 80vh;
+    overflow: auto;
+}
+
+.services-grid select::-webkit-scrollbar {
+    width: 6px;
+}
+
+.services-grid select::-webkit-scrollbar-track {
+   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.services-grid select::-webkit-scrollbar-thumb {
+    background-color: #5A5A5A;
+    border-radius: 40px;
+}
+
+.services-grid {
+    display: grid;
+    gap: 1em;
+    grid-template-columns: auto;
+}
+
+.services-grid select {
+    min-height: 13em;
+}
+
+.service-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+}
+
+.service-action button > svg,
+.s24-no-services-selected button > svg {
+    transform: rotate(90deg);
+}
+
+.services-grid option {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.25em;
+    padding: 0.5em 0;
+}
+
+.services-grid option::before {
+    content: '';
+    height: 1em;
+    width: 3em;
+    flex-shrink: 0;
+    display: inline-block;
+    background-image: var(--bg-logo, '');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.services-grid .selected-services-inner {
+    display: block;
+    position: relative;
+}
+
+.services-grid .s24-no-services-selected {
+    display: none;
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    bottom: 1px;
+    left: 1px;
+    background-color: #FAFAFA;
+    border-radius: 3px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 1em;
+}
+
+.services-grid select[name="selected_services"]:empty + .s24-no-services-selected {
+    display: flex;
+}
+
+.s24-no-services-selected > * {
+    margin: 0;
+}
+
+.s24-no-services-selected > h4 {
+    font-size: 13px;
+    font-weight: 400;
+    color: #545454;
+}
+
+.s24-no-services-selected > p {
+    font-size: 10px;
+    color: rgba(84, 84, 84, 0.6);
+}
+
+.s24-no-services-selected button {
+    scale: 0.5;
+}
+
+.sm-modal-api-countries {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    flex-wrap: wrap;
+}
+
+.sm-modal-api-countries > .control-label {
+    padding: 0;
+    margin: 0;
+}
+
+.sm-modal-api-countries > .api-countries-select-wrapper {
+    min-width: 150px;
+    max-width: 300px;
+    flex: 1;
+}
+
+.sm-modal-api-countries .sm-modal-add-country-btn {
+    height: 36px;
+    width: 36px;
+    padding: 0;
+}
+
+.s24-modal-sm-buttons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1em;
+}
+
+.panel-heading.heading-shipping-method {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.price-priority-wrapper {
+    display: flex;
+    gap: 1em;
+}
+
+.dimmension-wrapper {
+    display: flex;
+    gap: 1em;
+    flex-wrap: wrap;
+}
+
+.dimmension-wrapper .dimmension-inner {
+    position: relative;
+    flex: 1 0 110px;
+}
+
+.dimmension-wrapper .dimmension-input-label {
+    position: absolute;
+    top: -0.75em;
+    left: 1em;
+    display: block;
+    background: #ffffff;
+    z-index: 2;
+    padding: 0 0.25em;
+}
+
+.s24-info-pill {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    padding: 1em;
+    background-color: #BCBCBC;
+    font-size: 13px;
+    font-weight: 400;
+    color: #545454;
+    border-radius: 3px;
+}
+
+.s24-info-pill::before {
+    content: '';
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    background-color: #545454;
+}
+
+.s24-info-pill-success {
+    background-color: #E9F4E2;
+}
+
+.s24-info-pill-success::before {
+    background-color: #47A30E;
+}
+
+.s24-info-pill-danger {
+    background-color: #FFE8E3;
+}
+
+.s24-info-pill-danger::before {
+    background-color: #FF2E00;
+}
+
+#sm-modal-countries tr {
+    --loader-size: 3em;
+    --loader-weight: 0.3em;
+}
+
+@keyframes bs5-spinner-border {
+    100% { transform: rotate(360deg) }
+}
+
+.loading {
+    position: relative;
+    overflow: hidden !important;
+}
+
+.s24_int_m_loader {
+    display: none;
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0,0,0,0.5);
+    color: #E98814;
+    z-index: 999;
+    align-items: center;
+    justify-content: center;
+}
+
+.loading > .s24_int_m_loader {
+    display: flex;
+}
+
+.bs5-spinner-border {
+    display: inline-block;
+    width: var(--loader-size, 1em);
+    height: var(--loader-size, 1em);
+    border: var(--loader-weight, 0.15em) solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    -webkit-animation: .75s linear infinite bs5-spinner-border;
+    animation: 0.75s linear infinite bs5-spinner-border;
+}
+
+.options-hidden .sm-modal-services-grid,
+.options-hidden .sm-modal-global-price,
+.options-hidden .sm-modal-api-countries,
+.sm-create .sm-modal-api-countries {
+    display: none;
+}
+
+/* ---------------------------------------------------
+
+Order Panel specifik
+
+---------------------------------------------------- */
+#s24_int_m-panel > .panel-footer {
+    background-color: #FFFFFF;
+}
+
+#s24_int_m-panel > [data-footer-no-terminal].panel-footer {
+    border-top: none;
+}
+
+.s24-order-panel-pill {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 10px;
+    gap: 6px;
+    background: #F3F3F3;
+    border-radius: 3px;
+}
+
+.s24-order-info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: auto;
+    gap: 1.5em;
+    margin-bottom: 1em;
+}
+
+[data-grid-span="1/3"] {
+    grid-column: 1/3;
+}
+
+.s24-grid-label,
+.s24-grid-data-wrapper {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.s24-grid-label {
+    justify-content: flex-end;
+    font-size: 13px;
+    color: #545454;
+    font-weight: bold;
+}
+
+.s24-order-info-actions {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+    justify-content: center;
+}
+
+.s24-order-panel-selected-terminal {
+    padding: 10px;
+    background: #F3F3F3;
+    border-radius: 3px;
+    margin-bottom: 1.5em;
+}
+
+.terminal-selector-wrapper {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin-bottom: 0;
+    height: 0px;
+    overflow: hidden;
+    transition: height 250ms ease-in-out;
+}
+
+.terminal-selector-wrapper-inner {
+    flex: 1;
+    width: 200px;
+}
+
+[data-terminal-change-open="open"] .terminal-selector-wrapper {
+    height: 37px;
+    margin-bottom: 1.5em;
+}
+
+[data-terminal-change-btn-text] {
+    display: none;
+}
+
+[data-terminal-change-open="closed"] [data-terminal-change-btn-text="change"],
+[data-terminal-change-open="open"] [data-terminal-change-btn-text="cancel"] {
+    display: inline-block;
+}
+
+/* ---------------------------------------------------
+
+Manifest specifik
+
+---------------------------------------------------- */
+
+#manifest-list-table .table {
+    margin: 0;
+}
+
+.s24-empty-manifest {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5em;
+    color: #545454;
+}
+
+/* ---------------------------------------------------
+
+Media queries
+
+---------------------------------------------------- */
+
+@media (min-width: 768px) {
+    .s24-int-m-modal {
+        margin-left: 235px
+    }
+    .services-grid {
+        grid-template-columns: 1fr 65px 1fr;
+    }
+
+    .service-action {
+        margin-top: 1.2em;
+        flex-direction: column;
+    }
+
+    .service-action button > svg,
+    .s24-no-services-selected button > svg {
+        transform: rotate(0);
+    }
+}
+
+/* ---------------------------------------------------
+
+Override select2 rendered box to match our size
+
+---------------------------------------------------- */
+.s24_int_m_content .select2-selection__rendered {
+    line-height: 32px !important;
+}
+
+.s24_int_m_content .select2-container .select2-selection--single {
+    height: 36px !important;
+}
+
+.s24_int_m_content .select2-selection__arrow {
+    height: 35px !important;
+}
+
+/* ---------------------------------------------------
+
+Project : CSS Checkbox Switch
+Author : Partha Kar (https://www.facebook.com/partha.creativemind)
+Version : 1.0
+Release Dtae : 15 November, 2017
+
+---------------------------------------------------- */
+
+.checkbox.checbox-switch {
+    padding-left: 0;
+}
+
+.checkbox.checbox-switch label,
+.checkbox-inline.checbox-switch {
+    display: inline-block;
+    position: relative;
+    padding-left: 0;
+}
+.checkbox.checbox-switch label input,
+.checkbox-inline.checbox-switch input {
+    display: none;
+}
+.checkbox.checbox-switch label span,
+.checkbox-inline.checbox-switch span {
+    width: 35px;
+    border-radius: 20px;
+    height: 18px;
+    border: 1px solid #dbdbdb;
+    background-color: rgb(255, 255, 255);
+    border-color: rgb(223, 223, 223);
+    box-shadow: rgb(223, 223, 223) 0px 0px 0px 0px inset;
+    transition: border 0.4s ease 0s, box-shadow 0.4s ease 0s;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+.checkbox.checbox-switch label span:before,
+.checkbox-inline.checbox-switch span:before {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: rgb(255,255,255);
+    content: " ";
+    top: 0;
+    position: relative;
+    left: 0;
+    transition: all 0.3s ease;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+}
+.checkbox.checbox-switch label > input:checked + span:before,
+.checkbox-inline.checbox-switch > input:checked + span:before {
+    left: 17px;
+}
+
+
+/* Switch Default */
+.checkbox.checbox-switch label > input:checked + span,
+.checkbox-inline.checbox-switch > input:checked + span {
+    background-color: rgb(180, 182, 183);
+    border-color: rgb(180, 182, 183);
+    box-shadow: rgb(180, 182, 183) 0px 0px 0px 8px inset;
+    transition: border 0.4s ease 0s, box-shadow 0.4s ease 0s, background-color 1.2s ease 0s;
+}
+.checkbox.checbox-switch label > input:checked:disabled + span,
+.checkbox-inline.checbox-switch > input:checked:disabled + span {
+    background-color: rgb(220, 220, 220);
+    border-color: rgb(220, 220, 220);
+    box-shadow: rgb(220, 220, 220) 0px 0px 0px 8px inset;
+    transition: border 0.4s ease 0s, box-shadow 0.4s ease 0s, background-color 1.2s ease 0s;
+}
+.checkbox.checbox-switch label > input:disabled + span,
+.checkbox-inline.checbox-switch > input:disabled + span {
+    background-color: rgb(232,235,238);
+    border-color: rgb(255,255,255);
+}
+.checkbox.checbox-switch label > input:disabled + span:before,
+.checkbox-inline.checbox-switch > input:disabled + span:before {
+    background-color: rgb(248,249,250);
+    border-color: rgb(243, 243, 243);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+/* Switch Light */
+.checkbox.checbox-switch.switch-light label > input:checked + span,
+.checkbox-inline.checbox-switch.switch-light > input:checked + span {
+    background-color: rgb(248,249,250);
+    border-color: rgb(248,249,250);
+    box-shadow: rgb(248,249,250) 0px 0px 0px 8px inset;
+    transition: border 0.4s ease 0s, box-shadow 0.4s ease 0s, background-color 1.2s ease 0s;
+}
+
+/* Switch Dark */
+.checkbox.checbox-switch.switch-dark label > input:checked + span,
+.checkbox-inline.checbox-switch.switch-dark > input:checked + span {
+    background-color: rgb(52,58,64);
+    border-color: rgb(52,58,64);
+    box-shadow: rgb(52,58,64) 0px 0px 0px 8px inset;
+    transition: border 0.4s ease 0s, box-shadow 0.4s ease 0s, background-color 1.2s ease 0s;
+}
+.checkbox.checbox-switch.switch-dark label > input:checked:disabled + span,
+.checkbox-inline.checbox-switch.switch-dark > input:checked:disabled + span {
+    background-color: rgb(100, 102, 104);
+    border-color: rgb(100, 102, 104);
+    box-shadow: rgb(100, 102, 104) 0px 0px 0px 8px inset;
+    transition: border 0.4s ease 0s, box-shadow 0.4s ease 0s, background-color 1.2s ease 0s;
+}
+
+/* Switch Success */
+.checkbox.checbox-switch.switch-success label > input:checked + span,
+.checkbox-inline.checbox-switch.switch-success > input:checked + span {
+    background-color: rgb(40, 167, 69);
+    border-color: rgb(40, 167, 69);
+    box-shadow: rgb(40, 167, 69) 0px 0px 0px 8px inset;
+    transition: border 0.4s ease 0s, box-shadow 0.4s ease 0s, background-color 1.2s ease 0s;
+}
+.checkbox.checbox-switch.switch-success label > input:checked:disabled + span,
+.checkbox-inline.checbox-switch.switch-success > input:checked:disabled + span {
+    background-color: rgb(153, 217, 168);
+    border-color: rgb(153, 217, 168);
+    box-shadow: rgb(153, 217, 168) 0px 0px 0px 8px inset;
+}
+
+/* Switch Danger */
+.checkbox.checbox-switch.switch-danger label > input:checked + span,
+.checkbox-inline.checbox-switch.switch-danger > input:checked + span {
+    background-color: rgb(200, 35, 51);
+    border-color: rgb(200, 35, 51);
+    box-shadow: rgb(200, 35, 51) 0px 0px 0px 8px inset;
+    transition: border 0.4s ease 0s, box-shadow 0.4s ease 0s, background-color 1.2s ease 0s;
+}
+.checkbox.checbox-switch.switch-danger label > input:checked:disabled + span,
+.checkbox-inline.checbox-switch.switch-danger > input:checked:disabled + span {
+    background-color: rgb(216, 119, 129);
+    border-color: rgb(216, 119, 129);
+    box-shadow: rgb(216, 119, 129) 0px 0px 0px 8px inset;
+    transition: border 0.4s ease 0s, box-shadow 0.4s ease 0s, background-color 1.2s ease 0s;
+}
+
+/* Switch Primary */
+.checkbox.checbox-switch.switch-primary label > input:checked + span,
+.checkbox-inline.checbox-switch.switch-primary > input:checked + span {
+    background-color: rgb(0, 105, 217);
+    border-color: rgb(0, 105, 217);
+    box-shadow: rgb(0, 105, 217) 0px 0px 0px 8px inset;
+    transition: border 0.4s ease 0s, box-shadow 0.4s ease 0s, background-color 1.2s ease 0s;
+}
+.checkbox.checbox-switch.switch-primary label > input:checked:disabled + span,
+.checkbox-inline.checbox-switch.switch-primary > input:checked:disabled + span {
+    background-color: rgb(109, 163, 221);
+    border-color: rgb(109, 163, 221);
+    box-shadow: rgb(109, 163, 221) 0px 0px 0px 8px inset;
+    transition: border 0.4s ease 0s, box-shadow 0.4s ease 0s, background-color 1.2s ease 0s;
+}
+
+/* Switch Info */
+.checkbox.checbox-switch.switch-info label > input:checked + span,
+.checkbox-inline.checbox-switch.switch-info > input:checked + span {
+    background-color: rgb(23, 162, 184);
+    border-color: rgb(23, 162, 184);
+    box-shadow: rgb(23, 162, 184) 0px 0px 0px 8px inset;
+    transition: border 0.4s ease 0s, box-shadow 0.4s ease 0s, background-color 1.2s ease 0s;
+}
+.checkbox.checbox-switch.switch-info label > input:checked:disabled + span,
+.checkbox-inline.checbox-switch.switch-info > input:checked:disabled + span {
+    background-color: rgb(102, 192, 206);
+    border-color: rgb(102, 192, 206);
+    box-shadow: rgb(102, 192, 206) 0px 0px 0px 8px inset;
+    transition: border 0.4s ease 0s, box-shadow 0.4s ease 0s, background-color 1.2s ease 0s;
+}
+
+/* Switch Warning */
+.checkbox.checbox-switch.switch-warning label > input:checked + span,
+.checkbox-inline.checbox-switch.switch-warning > input:checked + span {
+    background-color: rgb(255, 193, 7);
+    border-color: rgb(255, 193, 7);
+    box-shadow: rgb(255, 193, 7) 0px 0px 0px 8px inset;
+    transition: border 0.4s ease 0s, box-shadow 0.4s ease 0s, background-color 1.2s ease 0s;
+}
+.checkbox.checbox-switch.switch-warning label > input:checked:disabled + span,
+.checkbox-inline.checbox-switch.switch-warning > input:checked:disabled + span {
+    background-color: rgb(226, 195, 102);
+    border-color: rgb(226, 195, 102);
+    box-shadow: rgb(226, 195, 102) 0px 0px 0px 8px inset;
+    transition: border 0.4s ease 0s, box-shadow 0.4s ease 0s, background-color 1.2s ease 0s;
+}

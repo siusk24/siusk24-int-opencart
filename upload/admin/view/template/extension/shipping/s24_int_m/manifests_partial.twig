@@ -1,0 +1,43 @@
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>{{ s24_int_m_manifest_table_col_manifest_id }}</th>
+                <th colspan="2">{{ s24_int_m_manifest_table_col_order_count }}</th>
+                {# <th>{{ s24_int_m_manifest_table_col_actions }}</th> #}
+            </tr>
+        </thead>
+        <tbody id="manifests-list">
+            {% for manifest in manifests %}
+            <tr>
+                <td>{{ manifest.manifest_id }}</td>
+                <td>{{ manifest.total_orders }}</td>
+                <td class="actions-col">
+                     <div class="s24-sm-actions-wrapper">
+                        <button class="btn btn-s24 btn-s24-primary s24-table-action-btn"
+                            data-print-manifest="{{ manifest.manifest_id }}"
+                            data-toggle="tooltip" title="{{ s24_int_m_manifest_btn_print }}"
+                        >
+                            <img src="view/image/s24_int_m/print_white.svg" alt="">
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="3">
+                    <div class="s24-empty-manifest">{{ s24_int_m_manifest_table_empty }}</div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% if manifests %}
+<div class="row">
+    <div id="pagination" class="col-sm-12 text-center">
+        {{ paginator }}
+    </div>
+</div>
+{% endif %}

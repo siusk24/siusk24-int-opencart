@@ -1,0 +1,44 @@
+{% for pd_category in s24_int_m_categories %}
+    <tr>
+        <td>{{ pd_category.category_id }}</td>
+        <td>{{ pd_category.name }}</td>
+        <td>
+            {% if pd_category.default_data %}
+                <span class="s24-info-pill s24-info-pill-success">{{ s24_int_m_generic_yes }}</span>
+            {% else %}
+                <span class="s24-info-pill s24-info-pill-danger">{{ s24_int_m_generic_no }}</span>
+            {% endif %}
+        </td>
+        <td class="actions-col">
+            <div class="s24-sm-actions-wrapper">
+                <button type="button" class="btn btn-s24 btn-s24-info s24-table-action-btn edit-pd-category"
+                    data-category="{{ pd_category.category_id }}"
+                    data-category-name="{{ pd_category.name }}"
+                    
+                    {% if pd_category.default_data %}
+                        data-has-defaults="true"
+                    {% else %}
+                        data-has-defaults="false"
+                    {% endif %}
+
+                    {% for key, default_data in pd_category.default_data.getAllValues() %}
+                        data-{{ key }}="{{ default_data }}"
+                    {% endfor %}
+
+                    data-toggle="tooltip" title="{{ s24_int_m_pd_btn_edit }}"
+                >
+                    <img src="view/image/s24_int_m/country_price_edit.svg" alt="">
+                </button>
+                
+                {% if pd_category.default_data %}
+                    <button type="button" class="btn btn-s24 btn-s24-primary s24-table-action-btn reset-pd-category"
+                        data-category="{{ pd_category.category_id }}"
+                        data-toggle="tooltip" title="{{ s24_int_m_pd_btn_reset }}"
+                    >
+                        <img src="view/image/s24_int_m/reset_white.svg" alt="">
+                    </button>
+                {% endif %}
+            </div>
+        </td>
+    </tr>
+{% endfor %}
