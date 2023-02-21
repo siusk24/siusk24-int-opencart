@@ -4,7 +4,7 @@ namespace Mijora\S24IntOpencart;
 
 class Params
 {
-    const VERSION = '1.0.0';
+    const VERSION = '1.0.1';
 
     const PREFIX = 's24_int_m_';
 
