@@ -80,8 +80,10 @@ class ParcelCtrl
                 $$dimmension = $$dimmension === 0 ? $defaults->$dimmension : $$dimmension;
             }
 
+            // Cart product has total weight of product, no need to multiply by quantity
             $total_weight += $weight;
-            $total_volume += ($width * $height * $length);
+            
+            $total_volume += (($width * $height * $length) * (int) $product['quantity']);
 
             if (!$consolidate) {
                 $parcel = (new Parcel())
@@ -92,10 +94,6 @@ class ParcelCtrl
                     ->setHeight(ceil($height));
 
                 $parcels[] = $parcel->generateParcel();
-                // TODO: check if api requires it duplicated
-                // for ($i = 0; $i < (int) $product['quantity']; $i++) {
-                //     $parcels[] = $parcel->generateParcel();
-                // }
             }
         }
 
